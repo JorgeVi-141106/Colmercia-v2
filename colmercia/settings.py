@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'accounts',
     'products',
     'orders',
+    'chatbot',
 ]
 
 MIDDLEWARE = [

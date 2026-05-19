@@ -28,6 +28,10 @@ colmercia/
 │   ├── serializers.py # Serializers
 │   ├── views.py        # Cart + Order viewsets
 │   └── urls.py         # Rutas /api/orders/
+├── chatbot/            # Chatbot IA para recomendaciones
+│   ├── services.py     # Lógica del chatbot
+│   ├── views.py        # Endpoints de chat
+│   └── urls.py         # Rutas /api/chatbot/
 ├── colmercia/          # Configuración del proyecto
 │   ├── settings.py     # Settings Django + DRF + JWT
 │   ├── urls.py         # URLs principales
@@ -98,6 +102,23 @@ python manage.py runserver 0.0.0.0:8000
 | POST | `/api/orders/` | Crear orden desde carrito |
 | GET | `/api/orders/` | Ver mis órdenes |
 
+### Chatbot IA
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| POST | `/api/chatbot/chat/` | Enviar mensaje al chatbot |
+| GET | `/api/chatbot/recommend/` | Recomendaciones por región |
+
+**Ejemplo de uso del chatbot:**
+```bash
+# Chat general
+curl -X POST http://localhost:8000/api/chatbot/chat/ \
+  -H "Content-Type: application/json" \
+  -d '{"message":"hola"}'
+
+# Recomendaciones por región
+curl "http://localhost:8000/api/chatbot/recommend/?region=Cundinamarca"
+```
+
 ## Datos de Prueba
 
 ```python
@@ -119,7 +140,7 @@ p = Product.objects.create(nombre='Sombrero Vueltiao', precio=45000, region=r, v
 
 ## Pendiente (Fase 2)
 
-- Módulo de IA/Chatbot para recomendaciones
+- ✅ Chatbot IA para recomendaciones (implementado)
 - Integración con pasarela de pagos
 - Panel admin para microempresarios
 - Historial cultural por producto
